@@ -10,6 +10,13 @@ public class Player {
     private Collection<HashSet> nicknames;
     private Collection<HashSet> guilds;
 
+    public Player(int id, UUID UUID_ID, Collection<HashSet> nicknames, Collection<HashSet> guilds) {
+        this.id = id;
+        this.UUID_ID = UUID_ID;
+        this.nicknames = nicknames;
+        this.guilds = guilds;
+    }
+
     public int getId() {
         return id;
     }
