@@ -7,12 +7,12 @@ import java.util.UUID;
 public class Player {
     private int id;
     private UUID UUID_ID;
-    private Collection<HashSet> nicknames;
-    private Collection<HashSet> guilds;
+    private Collection<String> nicknames;
+    private Collection<String> guilds;
 
-    public Player(int id, UUID UUID_ID, Collection<HashSet> nicknames, Collection<HashSet> guilds) {
+    public Player(int id, Collection<String> nicknames, Collection<String> guilds) {
         this.id = id;
-        this.UUID_ID = UUID_ID;
+        this.UUID_ID = UUID.randomUUID();
         this.nicknames = nicknames;
         this.guilds = guilds;
     }
@@ -25,19 +25,19 @@ public class Player {
         return UUID_ID;
     }
 
-    public Collection<HashSet> getNicknames() {
+    public Collection<String> getNicknames() {
         return nicknames;
     }
 
-    public void setNicknames(Collection<HashSet> nicknames) {
+    public void setNicknames(Collection<String> nicknames) {
         this.nicknames = nicknames;
     }
 
-    public Collection<HashSet> getGuilds() {
+    public Collection<String> getGuilds() {
         return guilds;
     }
 
-    public void setGuilds(Collection<HashSet> guilds) {
+    public void setGuilds(Collection<String> guilds) {
         this.guilds = guilds;
     }
 }

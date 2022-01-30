@@ -12,17 +12,17 @@ public class Permit {
     private LocalDate permit_created;
     private Period permit_duration;
     private String permit_type;
-    private Collection<Player> player;
-    private String issuer;
+    private Player player;
+    private Player issuer;
     private String description;
 
     public Permit() {
     }
 
-    public Permit(int id, UUID UUID_ID, LocalDate permit_created, Period permit_duration, String permit_type, Collection<Player> player, String issuer, String description) {
+    public Permit(int id, Period permit_duration, String permit_type, Player player, Player issuer, String description) {
         this.id = id;
-        this.UUID_ID = UUID_ID;
-        setPermit_created(permit_created);
+        this.UUID_ID = UUID.randomUUID();
+        setPermit_created(LocalDate.now());
         setPermit_duration(permit_duration);
         this.permit_type = permit_type;
         setPlayer(player);
@@ -68,22 +68,22 @@ public class Permit {
         this.permit_type = permit_type;
     }
 
-    public Collection<Player> getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Collection<Player> player) {
+    public void setPlayer(Player player) {
         if (player == null) {
             throw new IllegalArgumentException("Must be issued to a player. (Cannot be null).");
         }
         this.player = player;
     }
 
-    public String getIssuer() {
+    public Player getIssuer() {
         return issuer;
     }
 
-    public void setIssuer(String issuer) {
+    public void setIssuer(Player issuer) {
         if (issuer == null) {
             throw new IllegalArgumentException("Who's issuing the permit?");
         }

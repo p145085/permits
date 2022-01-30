@@ -15,9 +15,18 @@ public class App
 {
     public static void main( String[] args )
     {
-        Collection<HashSet> nicks = new ArrayList<>();
-        nicks.add("test");
-        Player player = new Player(1, UUID.randomUUID(), "nicknameS test", "guildS test");
-        Permit sheep = new Permit(1, UUID.randomUUID(), LocalDate.now(), Period.of(1,0,0), "sheep", )
+        Collection<String> matronnicks = new ArrayList<>();
+        Collection<String> matronguilds = new ArrayList<>();
+        matronnicks.add("MatronDeWinter");
+        matronguilds.add("chumbucket & Associates");
+        Player playerobjmatron = new Player(1, matronnicks, matronguilds);
+
+
+        Permit sheep = new Permit(1,
+                Period.of(1,0,0),
+                "sheep",
+                playerobjmatron,
+                playerobjmatron,
+                "This permit allows player to shear sheep at Yew pens.");
     }
 }
