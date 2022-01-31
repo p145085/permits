@@ -2,15 +2,16 @@ package org.example;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Player {
     private int id;
     private UUID UUID_ID;
-    private Collection<String> nicknames;
-    private Collection<String> guilds;
+    private HashSet<String> nicknames;
+    private HashSet<String> guilds;
 
-    public Player(int id, Collection<String> nicknames, Collection<String> guilds) {
+    public Player(int id, HashSet<String> nicknames, HashSet<String> guilds) {
         this.id = id;
         this.UUID_ID = UUID.randomUUID();
         this.nicknames = nicknames;
@@ -25,19 +26,42 @@ public class Player {
         return UUID_ID;
     }
 
-    public Collection<String> getNicknames() {
+    public HashSet<String> getNicknames() {
         return nicknames;
     }
 
-    public void setNicknames(Collection<String> nicknames) {
+    public void setNicknames(HashSet<String> nicknames) {
         this.nicknames = nicknames;
     }
 
-    public Collection<String> getGuilds() {
+    public HashSet<String> getGuilds() {
         return guilds;
     }
 
-    public void setGuilds(Collection<String> guilds) {
+    public void setGuilds(HashSet<String> guilds) {
         this.guilds = guilds;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return id == player.id && Objects.equals(UUID_ID, player.UUID_ID) && Objects.equals(nicknames, player.nicknames) && Objects.equals(guilds, player.guilds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, UUID_ID, nicknames, guilds);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", UUID_ID=" + UUID_ID +
+                ", nicknames=" + nicknames +
+                ", guilds=" + guilds +
+                '}';
     }
 }

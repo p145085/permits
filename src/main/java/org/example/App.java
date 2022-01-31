@@ -11,22 +11,27 @@ import java.util.UUID;
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        Collection<String> matronnicks = new ArrayList<>();
-        Collection<String> matronguilds = new ArrayList<>();
-        matronnicks.add("MatronDeWinter");
-        matronguilds.add("chumbucket & Associates");
-        Player playerobjmatron = new Player(1, matronnicks, matronguilds);
+        HashSet<String> matronNicks = new HashSet<>();
+        HashSet<String> matronGuilds = new HashSet<>();
+        matronNicks.add("MatronDeWinter");
+        matronNicks.add("Rydia");
+        matronGuilds.add("chumbucket & Associates");
+        Player playerObjMatron = new Player(1, matronNicks, matronGuilds);
 
 
         Permit sheep = new Permit(1,
                 Period.of(1,0,0),
                 "sheep",
-                playerobjmatron,
-                playerobjmatron,
+                playerObjMatron,
+                playerObjMatron,
                 "This permit allows player to shear sheep at Yew pens.");
+
+
+        System.out.println(sheep);
+        System.out.println(playerObjMatron);
     }
 }
