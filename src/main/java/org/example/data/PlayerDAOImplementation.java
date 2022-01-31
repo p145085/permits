@@ -35,8 +35,10 @@ public class PlayerDAOImplementation implements PlayerDAO{
     public List<Player> findByNickname(String nickname) {
         List<Player> foundMatches = new ArrayList<>();
         for(Player p : playerList){
-            if (p.getNicknames().equals(nickname)) {
-                foundMatches.add(p);
+            for(String nick : p.getNicknames()){
+                if (nick.equals(nickname)){
+                    foundMatches.add(p);
+                }
             }
         }
     }
@@ -45,8 +47,10 @@ public class PlayerDAOImplementation implements PlayerDAO{
     public List<Player> findByGuild(String guild) {
         List<String> found = new ArrayList<>();
         for(Player p : playerList) {
-            if (p.getGuilds().equals(guild)) {
-                found.add(guild);
+            for(String g : p.getGuilds()){
+                if(g.equalsIgnoreCase(guild)){
+                    found.add(guild);
+                }
             }
         }
     }
