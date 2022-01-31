@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface PlayerDAO extends GenericCRUD<Player, UUID> {
 
-    Player create(Player player);
+    Player save(Player player);
 
     Player findByID(UUID ID);
 

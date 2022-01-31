@@ -1,6 +1,7 @@
 package org.example.data;
 
 import org.example.Permit;
+import org.example.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +13,7 @@ public class PermitDAOImplementation implements PermitDAO{
     private List<Permit> permitList;
 
     @Override
-    public Permit create(Permit permit) {
+    public Permit save(Permit permit) {
         permitList.add(permit);
         return permit;
     }
@@ -32,20 +33,20 @@ public class PermitDAOImplementation implements PermitDAO{
     }
 
     @Override
-    public List<Permit> findByPlayer() {
+    public List<Permit> findByPlayer(Player player) {
         List<Permit> foundMatches = new ArrayList<>();
         for(Permit permit : permitList){
-            if (permit.getPlayer().equals(findByPlayer())){
+            if (permit.getPlayer().equals(findByPlayer(player))){
                 foundMatches.add(permit);
             }
         }
     }
 
     @Override
-    public List<Permit> findByIssuer() {
+    public List<Permit> findByIssuer(Player playerIssuer) {
         List<Permit> foundMatches = new ArrayList<>();
         for (Permit permit : permitList){
-            if(permit.getIssuer().equals(findByIssuer())){
+            if(permit.getIssuer().equals(findByIssuer(playerIssuer))){
                 foundMatches.add(permit);
             }
         }

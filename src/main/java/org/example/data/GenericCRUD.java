@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface GenericCRUD<T, ID> {
 
-    T create(T t);
+    T save(T t);
     List<T> findAll();
     T findByID(ID id);
     boolean delete(ID id);

@@ -9,12 +9,14 @@ import java.util.UUID;
 
 public interface PermitDAO extends GenericCRUD<Permit, UUID>{
 
-    Permit create(Permit permit);
+    Permit save(Permit permit);
 
     Permit findByID(UUID ID);
     List<Permit> findAll();
-    List<Permit> findByPlayer();
-    List<Permit> findByIssuer();
+    List<Permit> findByPlayer(Player player);
+    List<Permit> findByNickname(String nickname);
+    List<Permit> findByIssuer(Player playerIssuer);
+    List<Permit> findByGuild(String guild);
 
     Permit update(UUID ID, Permit updated);
 

@@ -12,7 +12,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
     private List<Player> playerList;
 
     @Override
-    public Player create(Player player) {
+    public Player save(Player player) {
         playerList.add(player);
         return player;
     }
