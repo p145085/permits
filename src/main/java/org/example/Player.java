@@ -11,6 +11,9 @@ public class Player {
     private HashSet<String> nicknames;
     private HashSet<String> guilds;
 
+    public Player() {
+    }
+
     public Player(int id, HashSet<String> nicknames, HashSet<String> guilds) {
         this.id = id;
         this.UUID_ID = UUID.randomUUID();

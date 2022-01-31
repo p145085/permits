@@ -14,9 +14,7 @@ public interface PermitDAO extends GenericCRUD<Permit, UUID>{
     Permit findByID(UUID ID);
     List<Permit> findAll();
     List<Permit> findByPlayer(Player player);
-    List<Permit> findByNickname(String nickname);
     List<Permit> findByIssuer(Player playerIssuer);
-    List<Permit> findByGuild(String guild);
 
     Permit update(UUID ID, Permit updated);
 

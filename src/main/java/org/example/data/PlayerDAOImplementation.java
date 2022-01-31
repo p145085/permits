@@ -9,6 +9,13 @@ import java.util.UUID;
 
 public class PlayerDAOImplementation implements PlayerDAO{
 
+    private static PlayerDAOImplementation INSTANCE;
+
+    public static PlayerDAOImplementation getInstance(){
+        if (INSTANCE == null) INSTANCE = new PlayerDAOImplementation();
+        return INSTANCE;
+    }
+
     private List<Player> playerList;
 
     @Override
@@ -24,6 +31,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
                 return p;
             }
         }
+        return null;
     }
 
     @Override
@@ -41,6 +49,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
                 }
             }
         }
+        return null;
     }
 
     @Override
@@ -53,6 +62,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
                 }
             }
         }
+        return null;
     }
 
     @Override

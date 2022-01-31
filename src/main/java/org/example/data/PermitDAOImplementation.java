@@ -25,6 +25,7 @@ public class PermitDAOImplementation implements PermitDAO{
                 return permit;
             }
         }
+        return null;
     }
 
     @Override
@@ -40,6 +41,7 @@ public class PermitDAOImplementation implements PermitDAO{
                 foundMatches.add(permit);
             }
         }
+        return null;
     }
 
     @Override
@@ -50,6 +52,7 @@ public class PermitDAOImplementation implements PermitDAO{
                 foundMatches.add(permit);
             }
         }
+        return null;
     }
 
     @Override
