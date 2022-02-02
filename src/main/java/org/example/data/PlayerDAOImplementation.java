@@ -16,7 +16,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
         return INSTANCE;
     }
 
-    private List<Player> playerList;
+    List<Player> playerList = new ArrayList<>();
 
     @Override
     public Player save(Player player) {
@@ -25,9 +25,19 @@ public class PlayerDAOImplementation implements PlayerDAO{
     }
 
     @Override
-    public Player findByID(UUID ID) {
+    public Player findByUUID(UUID ID) {
         for (Player p : playerList) {
             if(p.getUUID_ID().equals(ID)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Player findByID(int ID) {
+        for (Player p : playerList) {
+            if(p.getId() == ID){
                 return p;
             }
         }
@@ -44,7 +54,7 @@ public class PlayerDAOImplementation implements PlayerDAO{
         List<Player> foundMatches = new ArrayList<>();
         for(Player p : playerList){
             for(String nick : p.getNicknames()){
-                if (nick.equals(nickname)){
+                if (nick.equalsIgnoreCase(nickname)){
                     foundMatches.add(p);
                 }
             }
@@ -72,6 +82,6 @@ public class PlayerDAOImplementation implements PlayerDAO{
 
     @Override
     public boolean delete(UUID ID) {
-        return playerList.remove(findByID(ID));
+        return playerList.remove(findByUUID(ID));
     }
 }

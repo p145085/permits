@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.data.PermitDAOImplementation;
 import org.example.data.PlayerDAOImplementation;
 
 import java.time.LocalDate;
@@ -14,7 +15,8 @@ public class App
     public static void main( String[] args )
     {
 
-        PlayerDAOImplementation PDAOI = new PlayerDAOImplementation();
+        PlayerDAOImplementation PlayerDAO = new PlayerDAOImplementation();
+        PermitDAOImplementation PermitDAO = new PermitDAOImplementation();
 
         HashSet<String> matronNicks = new HashSet<>();
         HashSet<String> matronGuilds = new HashSet<>();
@@ -23,7 +25,7 @@ public class App
         matronGuilds.add("chumbucket & Associates");
         Player playerObjMatron = new Player(1, matronNicks, matronGuilds);
 
-        PDAOI.save(playerObjMatron);
+        PlayerDAO.save(playerObjMatron);
 
 
         Permit sheep = new Permit(1,
@@ -34,9 +36,21 @@ public class App
                 "This permit allows player to shear sheep at Yew pens.");
 
 
-        System.out.println(sheep);
-        System.out.println(playerObjMatron);
-        PDAOI.findByGuild("chumbucket & Associates");
+//        System.out.println(sheep);
+//        System.out.println(playerObjMatron);
+        System.out.println(PlayerDAO.findByGuild("chumbucket & Associates")); //TO-DO: This shows as "null".
+        System.out.println(PlayerDAO.findByNickname("MatronDeWinter")); //TO-DO: This shows as "null".
+        System.out.println(PlayerDAO.findByID(1));
+
+        PermitDAO.save(sheep);
+        System.out.println(PermitDAO.findPermitCreatedAfter(LocalDate.of(1997,1,1))); //TO-DO: This shows as "null".
+        System.out.println(PermitDAO.findPermitCreatedBefore(LocalDate.now())); //TO-DO: This shows as "null".
+        System.out.println(PermitDAO.findPermitOfType("sheep")); //TO-DO: This shows as "null".
+        System.out.println(PermitDAO.searchDescriptionFor("Yew")); //TO-DO: This shows as "null".
+        System.out.println(PermitDAO.findByID(1));
+        PermitDAO.findByIssuer(playerObjMatron); // TO-DO: Search by String instead of object.
+        PermitDAO.findByPlayer(playerObjMatron); // TO-DO: Search by String instead of object.
+
 
     }
 }

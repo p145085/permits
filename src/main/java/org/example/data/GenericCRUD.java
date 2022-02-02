@@ -6,7 +6,7 @@ public interface GenericCRUD<T, ID> {
 
     T save(T t);
     List<T> findAll();
-    T findByID(ID id);
+    T findByUUID(ID id);
     boolean delete(ID id);
 
 

@@ -9,10 +9,9 @@ public interface PlayerDAO extends GenericCRUD<Player, UUID> {
 
     Player save(Player player);
 
-    Player findByID(UUID ID);
-
+    Player findByUUID(UUID ID);
+    Player findByID(int ID);
     List<Player> findAll();
-
     List<Player> findByNickname(String nickname);
     List<Player> findByGuild(String guild);
 

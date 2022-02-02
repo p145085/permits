@@ -3,6 +3,7 @@ package org.example.data;
 import org.example.Permit;
 import org.example.Player;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,7 +11,14 @@ import java.util.UUID;
 
 public class PermitDAOImplementation implements PermitDAO{
 
-    private List<Permit> permitList;
+    private static PermitDAOImplementation INSTANCE;
+
+    public static PermitDAOImplementation getInstance(){
+        if (INSTANCE == null) INSTANCE = new PermitDAOImplementation();
+        return INSTANCE;
+    }
+
+    List<Permit> permitList = new ArrayList<>();
 
     @Override
     public Permit save(Permit permit) {
@@ -19,9 +27,19 @@ public class PermitDAOImplementation implements PermitDAO{
     }
 
     @Override
-    public Permit findByID(UUID ID) {
+    public Permit findByUUID(UUID ID) {
         for (Permit permit : permitList) {
             if(permit.getUUID_ID().equals(ID)){
+                return permit;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Permit findByID(int ID) {
+        for (Permit permit : permitList) {
+            if(permit.getId() == ID){
                 return permit;
             }
         }
@@ -37,7 +55,7 @@ public class PermitDAOImplementation implements PermitDAO{
     public List<Permit> findByPlayer(Player player) {
         List<Permit> foundMatches = new ArrayList<>();
         for(Permit permit : permitList){
-            if (permit.getPlayer().equals(findByPlayer(player))){
+            if (permit.getPlayer().equals(player)){
                 foundMatches.add(permit);
             }
         }
@@ -45,10 +63,54 @@ public class PermitDAOImplementation implements PermitDAO{
     }
 
     @Override
-    public List<Permit> findByIssuer(Player playerIssuer) {
+    public List<Permit> findByIssuer(Player issuer) {
         List<Permit> foundMatches = new ArrayList<>();
         for (Permit permit : permitList){
-            if(permit.getIssuer().equals(findByIssuer(playerIssuer))){
+            if(permit.getIssuer().equals(issuer)){
+                foundMatches.add(permit);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Permit> findPermitCreatedBefore(LocalDate createdBefore){
+        List<Permit> foundMatches = new ArrayList<>();
+        for (Permit permit : permitList){
+            if(permit.getPermit_created().isBefore(createdBefore)){
+                foundMatches.add(permit);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Permit> findPermitCreatedAfter(LocalDate createdAfter){
+        List<Permit> foundMatches = new ArrayList<>();
+        for (Permit permit : permitList){
+            if(permit.getPermit_created().isAfter(createdAfter)){
+                foundMatches.add(permit);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Permit> findPermitOfType(String permit_type){
+        List<Permit> foundMatches = new ArrayList<>();
+        for(Permit permit : permitList){
+            if(permit.getPermit_type().equalsIgnoreCase(permit_type)){
+                foundMatches.add(permit);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Permit> searchDescriptionFor(String search){
+        List<Permit> foundMatches = new ArrayList<>();
+        for(Permit permit : permitList){
+            if(permit.getDescription().contains(search)){
                 foundMatches.add(permit);
             }
         }
@@ -62,6 +124,6 @@ public class PermitDAOImplementation implements PermitDAO{
 
     @Override
     public boolean delete(UUID ID) {
-        return permitList.remove(findByID(ID));
+        return permitList.remove(this.findByUUID(ID));
     }
 }
