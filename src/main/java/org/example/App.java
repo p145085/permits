@@ -3,6 +3,7 @@ package org.example;
 import org.example.data.PermitDAOImplementation;
 import org.example.data.PlayerDAOImplementation;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -52,5 +53,13 @@ public class App
         PermitDAO.findByPlayer(playerObjMatron); // TO-DO: Search by String instead of object.
 
 
+
+
+        File writerDestination = new File("files/playerObjMatron.txt");
+        FileOperations.write(writerDestination, playerObjMatron.toString());
+
+        File targetFile = new File("files/playerObjMatron.txt");
+        String s = FileOperations.read(targetFile);
+        System.out.println(s);
     }
 }
